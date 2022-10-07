@@ -1,0 +1,30 @@
+{
+  "name": "prevent-public-repo",
+  "version": "1.0.0",
+  "description": "An application that prevent all repos from turning into public repos",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "author": "Shubham Raichandel",
+  "license": "ISC",
+  "dependencies": {
+    "@octokit/auth-app": "^4.0.6",
+    "dotenv": "^16.0.3",
+    "eventsource": "^2.0.2",
+    "octokit": "^2.0.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manulife-ets-sandbox/prevent-public-repo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/manulife-ets-sandbox/prevent-public-repo/issues"
+  },
+  "homepage": "https://github.com/manulife-ets-sandbox/prevent-public-repo#readme"
+}
