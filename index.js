@@ -2,6 +2,8 @@ const { App, Octokit } = require("octokit");
 const { createAppAuth } = require("@octokit/auth-app");
 const EventSource = require("eventsource");
 
+
+
 require("dotenv").config();
 
 // keys
@@ -23,9 +25,10 @@ const app = new App({
   },
   oauth: {
     clientId: keys.clientId,
-    clientSecret: keys.clientSecret,
+    clientSecret: keys.clientSecret
   },
 });
+
 
 // Authenticating App as an installation
 const octokit = new Octokit({
@@ -39,6 +42,7 @@ const octokit = new Octokit({
 
 const webhookProxyURL = process.env.WEBHOOK_PROXY;
 const source = new EventSource(webhookProxyURL);
+
 
 // Verify and receive headers
 source.onmessage = (event) => {
@@ -62,7 +66,6 @@ function createIssue({ payload }, title, body) {
     body: body,
   });
 }
-
 // updateRepo() to change a repo's visibility
 function updateRepo({ payload }) {
   return octokit.rest.repos.update({
