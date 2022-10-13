@@ -1,12 +1,12 @@
 {
   "name": "prevent-public-repo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An application that prevent all repos from turning into public repos",
   "main": "server.js",
   "scripts": {
     "test": "jest",
     "start": "node server.js",
-    "sandbox":"cp .env.sandbox .env && nodemon server.js",
+    "sandbox": "cp .env.sandbox .env && nodemon server.js",
     "dev": "cp .env.dev .env && nodemon server.js"
   },
   "author": "Shubham Raichandel",
