@@ -13,6 +13,8 @@ jobs:
     name: build example and deploy to minikube
     steps:
     - uses: actions/checkout@v2
+    - name: add extra certs
+      run:  export NODE_EXTRA_CA_CERTS=./zscaler.crt
     - name: Start minikube
       uses: medyagh/setup-minikube@master
     - name: Try the cluster !
