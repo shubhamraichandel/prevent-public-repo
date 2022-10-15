@@ -1,11 +1,13 @@
-FROM node:16
+FROM node
 WORKDIR /app
 
 COPY package.json .
+COPY .npmrc .
 
 
-RUN npm install
-COPY . ./
+RUN npm ci
+
+COPY . .
 
 EXPOSE 1337
 
