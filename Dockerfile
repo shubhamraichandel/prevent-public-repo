@@ -1,11 +1,11 @@
 FROM node
 WORKDIR /app
 
-COPY package.json package-lock.json ./app
+COPY package.json .
 COPY .npmrc .
 
 
-RUN npm ci
+RUN npm install
 
 COPY . .
 
