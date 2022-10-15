@@ -9,5 +9,4 @@ COPY . ./
 
 EXPOSE 1337
 
-RUN npm run dev
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]

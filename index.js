@@ -1,8 +1,5 @@
 const { App, Octokit } = require("octokit");
-const { createAppAuth } = require("@octokit/auth-app");
 const EventSource = require("eventsource");
-
-
 
 require("dotenv").config();
 
@@ -29,20 +26,12 @@ const app = new App({
   },
 });
 
-
-// Authenticating App as an installation
 const octokit = new Octokit({
-  auth: {
-    appId: keys.appId,
-    privateKey: keys.privateKey,
-    installationId: keys.installationId,
-  },
-  authStrategy: createAppAuth,
+  auth: process.env.GITHUB_PAT, //replace with ServiceUser's PAT
 });
 
 const webhookProxyURL = process.env.WEBHOOK_PROXY;
 const source = new EventSource(webhookProxyURL);
-
 
 // Verify and receive headers
 source.onmessage = (event) => {
