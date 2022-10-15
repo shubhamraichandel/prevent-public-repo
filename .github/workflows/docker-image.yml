@@ -9,8 +9,27 @@ jobs:
   build:
 
     runs-on: self-hosted
-
+    
+    name: build example and deploy to minikube
     steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag prevent-public:${{env.IMG_TAG}}
+    - uses: actions/checkout@v2
+    - name: Start minikube
+      uses: medyagh/setup-minikube@master
+    - name: Try the cluster !
+      run: kubectl get pods -A
+    - name: Build image
+      run: |
+        export SHELL=/bin/bash
+        eval $(minikube -p minikube docker-env)
+        docker build -f ./Dockerfile -t prevent-public:${{env.IMG_TAG}} .
+        echo -n "verifying images:"
+        docker images        
+    - name: Deploy to minikube
+      run:
+        kubectl apply -f deploy-to-minikube.yaml
+    - name: Test service URLs
+      run: |
+        minikube service list
+        minikube service example --url
+        echo "------------------opening the service------------------"
+        curl $(minikube service example --url)
