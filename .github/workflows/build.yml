@@ -18,7 +18,7 @@ jobs:
     - name: 'Create env file'
       run: |
           touch .env
-          echo APP_ID=${{ secrets.API_ID }} >> .env
+          echo APP_ID=${{ secrets.APP_ID }} >> .env
           echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env
           echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> .env
           echo WEBHOOK_PROXY=${{ secrets.WEBHOOK_PROXY }} >> .env
