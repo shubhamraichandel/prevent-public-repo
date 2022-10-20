@@ -1,6 +1,9 @@
 name: Create envfile
 
 on:
+  push:
+    branches:
+      - "dev"
   workflow_dispatch:
 
 
@@ -12,11 +15,14 @@ jobs:
  
     steps:
 
-    - name: Make envfile
-      uses: SpicyPizza/create-envfile@v1.3
-      with:
-        envkey_DEBUG: false
-        envkey_APP_ID: ${{ secrets.APP_ID }}
-        file_name: .env
-        fail_on_empty: false
+    - name: 'Create env file'
+      run: |
+          touch .env
+          echo APP_ID=${{ secrets.API_ID }} >> .env
+          echo CLIENT_ID=${{ secrets.CLIENT_ID }} >> .env
+          echo CLIENT_SECRET=${{ secrets.CLIENT_SECRET }} >> .env
+          echo WEBHOOK_PROXY=${{ secrets.WEBHOOK_PROXY }} >> .env
+          echo WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET }} >> .env
+          echo GITHUB_PAT=${{ secrets.PAT_GITHUB }} >> .env
+          cat .env
     - run: cat .env
